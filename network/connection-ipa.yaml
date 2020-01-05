@@ -1,0 +1,31 @@
+name: network-ipa
+version: 1.0.0
+organizations:
+  ipa:
+    mspid: IPAMSP
+    peers:
+      - peer0.ipa.com
+    certificateAuthorities:
+      - ca.ipa.com
+certificateAuthorities:
+  ca.ipa.com:
+    url: http://localhost:7054
+    caName: ca.ipa.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICLTCCAdSgAwIBAgIRALohdWENwp6ZhDcm7554/FUwCgYIKoZIzj0EAwIwYTEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xEDAOBgNVBAoTB2lwYS5jb20xEzARBgNVBAMTCmNhLmlwYS5jb20w
+        HhcNMjAwMTAyMTQ0NjAwWhcNMjkxMjMwMTQ0NjAwWjBhMQswCQYDVQQGEwJVUzET
+        MBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEQMA4G
+        A1UEChMHaXBhLmNvbTETMBEGA1UEAxMKY2EuaXBhLmNvbTBZMBMGByqGSM49AgEG
+        CCqGSM49AwEHA0IABFYvUeb6AsqAcNrm4mhVvKdndKfgDVthcq42PCAfEOsRfeWH
+        WlJ7jhGZAbIvSVDFAEQEseNMVa94xN1AWLnRsbujbTBrMA4GA1UdDwEB/wQEAwIB
+        pjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB
+        /zApBgNVHQ4EIgQg0jz3SP3uH/r5Xyvcq2X0sG/U3jJwkRqRyFNDyYXvXSYwCgYI
+        KoZIzj0EAwIDRwAwRAIgKAxFug1QcdeoZStfNi0UH0oLN7RSITJ3xfuf4qkdmQkC
+        IE8Dw7C9AXCGbXDK4A5Jb9x+1q3OKkfKgt/pyh8OZegE
+        -----END CERTIFICATE-----
+    httpOptions:
+      verify: false

@@ -1,0 +1,13 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: ipa.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: IPA
+    Domain: org.ipa.com
+    Template:
+      Count: 1
+    Users:
+      Count: 1
