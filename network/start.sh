@@ -1,6 +1,7 @@
 # Exit on first error, print all commands.
 set -ev
 
+unset CONTACT_VERSION
 docker-compose -f docker-compose.yml down
 
 docker-compose -f docker-compose.yml up -d

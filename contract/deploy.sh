@@ -10,7 +10,12 @@ echo "Version: $CONTRACT_VERSION"
 
 echo "Install contract"
 # Install contract
-docker exec cli peer chaincode install -o orderer.ipa.com:7050 -n journalContract -v $CONTRACT_VERSION -p /opt/gopath/src/github.com/contract -l node
+docker exec cli peer chaincode install \
+       -o orderer.ipa.com:7050 \
+       -n journalContract \
+       -v $CONTRACT_VERSION \
+       -p /opt/gopath/src/github.com/contract \
+       -l node
 
 if [ $CONTRACT_VERSION == 0 ]; then
     # Instantiate contract
@@ -19,7 +24,8 @@ if [ $CONTRACT_VERSION == 0 ]; then
 	   -o orderer.ipa.com:7050 \
 	   -n journalContract \
 	   -v $CONTRACT_VERSION \
-	   -C ipachannel
+	   -C ipachannel \
+	   -c '{"Args":["instantiate"]}'
 else
     # Upgrade contract
     echo "Upgrade contract"
@@ -28,5 +34,5 @@ else
 	   -n journalContract \
 	   -v $CONTRACT_VERSION \
 	   -C ipachannel \
-	   -c '{"Args":[]}'
+	   -c '{"Args":["instantiate"]}'
 fi

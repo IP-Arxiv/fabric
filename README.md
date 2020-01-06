@@ -3,7 +3,8 @@
 ## Start Network
 ``` shell
 cd network
-./start.sh
+# start.sh has to be sourced because of `unset`
+. ./start.sh 
 ```
 
 ## Deploy and invoke Chaincode
@@ -13,6 +14,8 @@ cd contract
 . ./deploy
 ./invoke.sh initCount
 ```
+Fabric reuses chaincode images, which have the same name and version. We have to remove those if we deploy a chaincode with the same name and version, which has been previously deployed by using `docker system prune -a` or deleting the docker images manually `docker rmi {IMAGE}`.
+
 
 
 
