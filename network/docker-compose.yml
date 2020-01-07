@@ -12,6 +12,7 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca.ipa.com
       - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org.ipa.com-cert.pem
       - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/b78874f06255a1794224eaea604316ed9e14e27f06bc77c95e73bae41833a1f2_sk
+      - FABRIC_CA_CLIENT_HOME=$HOME/fabric-ca/clients/admin
     ports:
       - 7054:7054
     command: sh -c 'fabric-ca-server start -b admin:adminpw'
