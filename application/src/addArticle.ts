@@ -6,12 +6,10 @@ const yaml = require("js-yaml");
 
 const wallet = new FileSystemWallet("./wallet");
 
-async function main() {
+async function addArticle(title: string, userName: string) {
   const gateway = new Gateway();
 
   try {
-    const userName = "user1";
-
     let connectionProfile = yaml.safeLoad(
       fs.readFileSync("../network/connection-ipa.yaml", "utf8")
     );
@@ -39,13 +37,11 @@ async function main() {
     console.log("add article");
     const addArticleResponse = await contract.submitTransaction(
       "addArticle",
-      "First Title"
+      title
     );
   } catch (error) {
     console.error(`Error: ${error}`);
   }
 }
 
-main().then(() => {
-  console.log("added article");
-});
+module.exports = { addArticle };

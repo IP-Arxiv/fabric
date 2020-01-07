@@ -38,6 +38,6 @@ async function main() {
     console.error(`Failed to evaluate transaction: ${error}`);
     process.exit(1);
   }
-https://EinsPlusPlus-Dev.firebaseapp.com}
+}
 
 main();

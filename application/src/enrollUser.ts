@@ -1,6 +1,10 @@
 import { FileSystemWallet, Gateway, X509WalletMixin } from "fabric-network";
 import * as path from "path";
 
+enum Role {
+  author = "author"
+}
+
 const ccpPath = path.resolve(
   __dirname,
   "..",
@@ -9,7 +13,7 @@ const ccpPath = path.resolve(
   "connection-ipa.yaml"
 );
 
-async function main() {
+async function enrollUser(enrollmentID: string, role: Role) {
   try {
     // Create a new file system based wallet for managing identities.
     const walletPath = path.join(process.cwd(), "wallet");
@@ -17,10 +21,10 @@ async function main() {
     console.log(`Wallet path: ${walletPath}`);
 
     // Check to see if we've already enrolled the user.
-    const userExists = await wallet.exists("user1");
+    const userExists = await wallet.exists(enrollmentID);
     if (userExists) {
       console.log(
-        'An identity for the user "user1" already exists in the wallet'
+        `An identity for the user "${enrollmentID}" already exists in the wallet`
       );
       return;
     }
@@ -50,14 +54,14 @@ async function main() {
     // Register the user, enroll the user, and import the new identity into the wallet.
     const secret = await ca.register(
       {
-        affiliation: "org1.department1",
-        enrollmentID: "user1",
-        role: "client"
+        affiliation: "ipa.journal",
+        enrollmentID,
+        role
       },
       adminIdentity
     );
     const enrollment = await ca.enroll({
-      enrollmentID: "user1",
+      enrollmentID,
       enrollmentSecret: secret
     });
     const userIdentity = X509WalletMixin.createIdentity(
@@ -65,9 +69,9 @@ async function main() {
       enrollment.certificate,
       enrollment.key.toBytes()
     );
-    await wallet.import("user1", userIdentity);
+    await wallet.import(enrollmentID, userIdentity);
     console.log(
-      'Successfully registered and enrolled admin user "user1" and imported it into the wallet'
+      "Successfully registered and enrolled admin user ${enrollmentID} and imported it into the wallet"
     );
   } catch (error) {
     console.error(`Failed to register user "user1": ${error}`);
@@ -75,4 +79,4 @@ async function main() {
   }
 }
 
-main();
+module.exports = { enrollUser, Role };
