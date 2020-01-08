@@ -16,6 +16,14 @@ class ArticleList extends StateList {
   async getArticle(articleKey) {
     return this.getState(articleKey);
   }
+
+  async updateArticle(article) {
+    return this.updateState(article);
+  }
+
+  async getAllArticles() {
+    return this.getStates("A", "{");
+  }
 }
 
 module.exports = ArticleList;

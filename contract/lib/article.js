@@ -16,8 +16,12 @@ class Article extends State {
     this.title = newTitle;
   }
 
+  publish() {
+    this.isPublished = true;
+  }
+
   static createInstance(title) {
-    return new Article({ title });
+    return new Article({ title, isPublished: false });
   }
 
   static getClass() {

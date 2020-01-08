@@ -1,7 +1,16 @@
 "use strict";
 const State = require("./state.js");
 
+/**
+ * StateList provides a named virtual container for a set of ledger states.
+ * Each state has a unique key which associates it with the container, rather
+ * than the container containing a link to the state. This minimizes collisions
+ * for parallel transactions on different states.
+ */
 class StateList {
+  /**
+   * Store Fabric context for subsequent API access, and name of list
+   */
   constructor(ctx, listName) {
     this.ctx = ctx;
     this.name = listName;
@@ -15,7 +24,6 @@ class StateList {
    */
   async addState(state) {
     let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
-    console.log(key);
     let data = State.serialize(state);
     await this.ctx.stub.putState(key, data);
   }
@@ -30,7 +38,6 @@ class StateList {
       this.name,
       State.splitKey(key)
     );
-    console.log(ledgerKey);
     let data = await this.ctx.stub.getState(ledgerKey);
     if (data) {
       let state = State.deserialize(data, this.supportedClasses);
@@ -38,6 +45,55 @@ class StateList {
     } else {
       return null;
     }
+  }
+
+  async getStates(startKey_, endKey_) {
+    const startKey = this.ctx.stub.createCompositeKey(
+      this.name,
+      State.splitKey(startKey_)
+    );
+    const endKey = this.ctx.stub.createCompositeKey(
+      this.name,
+      State.splitKey(endKey_)
+    );
+
+    const iterator = await this.ctx.stub.getStateByRange(startKey, endKey);
+
+    const allResults = [];
+    while (true) {
+      const res = await iterator.next();
+
+      if (res.value && res.value.value.toString()) {
+        console.log(res.value.value.toString("utf8"));
+
+        const Key = res.value.key;
+        let Record;
+        try {
+          Record = JSON.parse(res.value.value.toString("utf8"));
+        } catch (err) {
+          console.log(err);
+          Record = res.value.value.toString("utf8");
+        }
+        allResults.push({ Key, Record });
+      }
+      if (res.done) {
+        await iterator.close();
+        console.info(allResults);
+        return JSON.stringify(allResults);
+      }
+    }
+  }
+
+  /**
+   * Update a state in the list. Puts the new state in world state with
+   * appropriate composite key.  Note that state defines its own key.
+   * A state is serialized before writing. Logic is very similar to
+   * addState() but kept separate becuase it is semantically distinct.
+   */
+  async updateState(state) {
+    let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+    let data = State.serialize(state);
+    await this.ctx.stub.putState(key, data);
   }
 
   /** Stores the class for future deserialization */
