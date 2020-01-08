@@ -15,6 +15,7 @@ class StateList {
    */
   async addState(state) {
     let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+    console.log(key);
     let data = State.serialize(state);
     await this.ctx.stub.putState(key, data);
   }
@@ -29,6 +30,7 @@ class StateList {
       this.name,
       State.splitKey(key)
     );
+    console.log(ledgerKey);
     let data = await this.ctx.stub.getState(ledgerKey);
     if (data) {
       let state = State.deserialize(data, this.supportedClasses);

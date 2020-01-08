@@ -5,9 +5,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-echo "Invoking $1 $2"
+echo "Invoking $1 $2 $3"
 docker exec cli peer chaincode invoke \
        -o orderer.ipa.com:7050 \
        -C ipachannel \
        -n journalContract \
-       -c "{\"Args\":[\"$1\", \"$2\"]}"
+       -c "{\"Args\":[\"$1\", \"$2\", \"$3\"]}"

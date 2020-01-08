@@ -105,6 +105,7 @@ services:
       - /var/run/:/host/var/run/
       - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
       - ../contract:/opt/gopath/src/github.com/contract/
+      - ../application/wallet:/opt/gopath/src/github.com/wallet
     depends_on:
       - orderer.ipa.com
       - peer0.org.ipa.com

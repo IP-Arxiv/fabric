@@ -50,4 +50,9 @@ app.post("/articles/:title", (req, res) => {
 
 app.patch("/article", (req, res) => {});
 
+app.get("/logCtx", (req, res) => {
+  const journalC = new articles.journalContract();
+  journalC.logCtx("authorWithRole").then(() => res.send("loged ctx"));
+});
+
 app.listen(port, () => console.log(`IPA Express listening on port ${port}!`));
