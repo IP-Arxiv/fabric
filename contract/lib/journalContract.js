@@ -31,8 +31,8 @@ class JournalContract extends Contract {
   /**
    * TODO: chk for role
    */
-  async addArticle(ctx, title) {
-    let article = Article.createInstance(title);
+  async addArticle(ctx, title, cid) {
+    let article = Article.createInstance(title, cid);
     await ctx.articleList.addArticle(article);
     return article;
   }

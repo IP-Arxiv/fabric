@@ -112,13 +112,9 @@ services:
     networks:
       - ipa
 
-
-
-  
-  # peer0.ipa.com:
-  #   container_name: peer0.ipaOrg.com
-  #   image: hyperledger/fabric-peer
-  #   environment:
-  #   working_dir
-
-
+  ipfs:
+    container_name: ipfs
+    image: ipfs/go-ipfs:release
+    ports:
+      - "5001:5001"
+      - "8080:8080"

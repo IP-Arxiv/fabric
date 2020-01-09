@@ -15,13 +15,19 @@ class Article extends State {
   setTitle(newTitle) {
     this.title = newTitle;
   }
+  getCID() {
+    return this.cid;
+  }
+  setCID(newCID) {
+    this.cid = newCID;
+  }
 
   publish() {
     this.isPublished = true;
   }
 
-  static createInstance(title) {
-    return new Article({ title, isPublished: false });
+  static createInstance(title, cid) {
+    return new Article({ title, cid, isPublished: false });
   }
 
   static getClass() {

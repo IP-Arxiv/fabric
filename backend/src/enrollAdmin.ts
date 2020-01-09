@@ -13,7 +13,7 @@ const ccpPath = path.resolve(
 );
 const ccp = yaml.safeLoad(fs.readFileSync(ccpPath, "utf8"));
 
-async function main() {
+async function enrollAdmin() {
   try {
     // Create CA client
     const caInfo = ccp.certificateAuthorities["ca.ipa.com"];
@@ -56,4 +56,4 @@ async function main() {
   }
 }
 
-main();
+module.exports = { enrollAdmin };
