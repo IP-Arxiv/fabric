@@ -55,8 +55,19 @@ export default () => {
               header={<h3>Articles</h3>}
               bordered
               dataSource={articles}
-              renderItem={item => (
-                <List.Item actions={[<a>download</a>]}>{item.title}</List.Item>
+              renderItem={article => (
+                <List.Item
+                  actions={[
+                    <a
+                      href={`http://localhost:3000/articles/download/${article.cid}`}
+                      download
+                    >
+                      download
+                    </a>
+                  ]}
+                >
+                  {article.title}
+                </List.Item>
               )}
             />
           </div>
