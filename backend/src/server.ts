@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const user = require("./enrollUser");
 const stream = require("stream");
+const cors = require("cors");
 import { IPFS } from "./ipfs";
 import { Journal } from "./addArticle";
 
@@ -10,6 +11,7 @@ const port = 3000;
 const app = express();
 const upload = multer();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/", (req, res) => res.send("Hello World!"));
 app.get("/test", (req, res) => res.send("jojo"));
@@ -53,9 +55,18 @@ app.get("/articles", (req, res) => {
   journal.init(() => {
     journal
       .getAllArticles()
-      .then(allArticles => {
-        console.log(JSON.parse(allArticles.toString()));
-        res.send(allArticles);
+      .then(articles_ => {
+        const articles = JSON.parse(articles_.toString());
+        res.send(
+          articles.map(article => {
+            const { title, cid, isPublished } = article.Record;
+            return {
+              cid,
+              title,
+              isPublished
+            };
+          })
+        );
       })
       .catch(err => res.status(500).send(`Error: ${err}`));
   });

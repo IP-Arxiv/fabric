@@ -1,0 +1,30 @@
+[11:52:13.275] Global cache location '/Users/knowledge/Library/Caches/typescript/3.7', safe file path '/users/knowledge/.config/yarn/global/node_modules/typescript/lib/typingsafelist.json', types map path /users/knowledge/.config/yarn/global/node_modules/typescript/lib/typesmap.json
+[11:52:13.276] Processing cache location '/Users/knowledge/Library/Caches/typescript/3.7'
+[11:52:13.277] Trying to find '/Users/knowledge/Library/Caches/typescript/3.7/package.json'...
+[11:52:13.278] Finished processing cache location '/Users/knowledge/Library/Caches/typescript/3.7'
+[11:52:13.278] Process id: 2555
+[11:52:13.278] NPM location: /Users/knowledge/.nvm/versions/node/v12.10.0/bin/npm (explicit '--npmLocation' not  provided)
+[11:52:13.278] validateDefaultNpmLocation: false
+[11:52:13.279] Npm config file: /Users/knowledge/Library/Caches/typescript/3.7/package.json
+[11:52:13.279] Npm config file: '/Users/knowledge/Library/Caches/typescript/3.7/package.json' is missing, creating new one...
+[11:52:13.280] Updating types-registry npm package...
+[11:52:13.280] Exec: /Users/knowledge/.nvm/versions/node/v12.10.0/bin/npm install --ignore-scripts types-registry@latest
+[11:52:14.564]     Succeeded. stdout:
+    + types-registry@0.1.473
+    added 1 package from 1 contributor and audited 1 package in 0.625s
+found 0 vulnerabilities
+
+
+[11:52:14.564] Updated types-registry npm package
+[11:56:33.647] Got install request {"projectName":"/dev/null/inferredProject1*","fileNames":[],"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/users/knowledge/developer/fabric/application/pages","kind":"discover"}
+[11:56:33.666] Loaded safelist from types map file '/users/knowledge/.config/yarn/global/node_modules/typescript/lib/typesmap.json'
+[11:56:33.666] Explicitly included types: []
+[11:56:33.667] Inferred typings from unresolved imports: []
+[11:56:33.667] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/users/knowledge/developer/fabric/application/pages/bower_components","/users/knowledge/developer/fabric/application/pages/node_modules"]}
+[11:56:33.667] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/users/knowledge/developer/fabric/application/pages/bower_components","/users/knowledge/developer/fabric/application/pages/node_modules"]}
+[11:56:33.668] DirectoryWatcher:: Added:: WatchInfo: /users/knowledge/developer/fabric/application/pages/bower_components
+[11:56:33.669] DirectoryWatcher:: Added:: WatchInfo: /users/knowledge/developer/fabric/application/pages/node_modules
+[11:56:33.669] Sending response:
+    {"projectName":"/dev/null/inferredProject1*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[11:56:33.669] Response has been sent.
+[11:56:33.669] No new typings were requested as a result of typings discovery
