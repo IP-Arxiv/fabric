@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 import { Layout, Menu, Icon, List } from "antd";
 
@@ -27,22 +28,22 @@ export default () => {
         }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1">
-            <Icon type="user" />
-            <span className="nav-text">Journal</span>
+            <Link href="/">
+              <div>
+                <Icon type="book" />
+                <span className="nav-text">Journal</span>
+              </div>
+            </Link>
           </Menu.Item>
           <Menu.Item key="2">
-            <Icon type="video-camera" />
-            <span className="nav-text">Submit Article</span>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Icon type="upload" />
-            <span className="nav-text">nav 3</span>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Icon type="user" />
-            <span className="nav-text">nav 4</span>
+            <Link href="/addArticle">
+              <div>
+                <Icon type="upload" />
+                <span className="nav-text">Submit Article</span>
+              </div>
+            </Link>
           </Menu.Item>
         </Menu>
       </Sider>
