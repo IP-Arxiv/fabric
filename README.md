@@ -1,5 +1,10 @@
 # Setup
 
+## Requirements
+* docker
+* docker-compose
+* npm
+
 ## Start Network
 ``` shell
 cd network
@@ -16,7 +21,9 @@ cd contract
 ```
 Fabric reuses chaincode images, which have the same name and version. We have to remove those if we deploy a chaincode with the same name and version, which has been previously deployed by using `docker system prune -a` or deleting the docker images manually `docker rmi {IMAGE}`.
 
+## Known problems
 
+* Standard ubuntu-packaged docker-compose does not yet support version '3.7' of the .yml. Set to '3'.
 
 
 
